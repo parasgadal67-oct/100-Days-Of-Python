@@ -30,7 +30,7 @@ while True:
     elif choice == "2":
         print("Here are all your expenses.")
         for expense in expenses:
-            print(f"{expense["item"]} - ₹{expense["amount"]}")   
+            print(f"{expense['item']} - ₹{expense['amount']}")   
             
     elif choice == "3":
         print("Here is your total expenditure.")
