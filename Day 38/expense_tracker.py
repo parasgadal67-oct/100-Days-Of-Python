@@ -17,9 +17,16 @@ while True:
     print("3. Show total expenditure.")
     print("4. Exit.")
     
-    choice = input("Enter your choice : ")
+    choice = input("Enter your choice : ").strip()
     if choice == "1":
-        print("New Expense coming soon.")
+        item = input("Item name: ").strip()
+        amount = int(input("Item amount:"))
+        expense = {"item" : item ,  "amount" : amount}
+        expenses.append(expense)
+        with open('expenses.json', "w") as f:
+            json.dump(expenses, f)
+        print(expenses)
+        print("New Expense Added.")
     elif choice == "2":
         print("Here are all your expenses.")
     elif choice == "3":
