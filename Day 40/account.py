@@ -18,7 +18,7 @@ class Account:
         if amount <= 0:
             print("Invalid Transaction")
             return
-        if self.balance < amount:
+        elif self.balance < amount:
             print("Balance Too Low.")
             return
         self.balance = self.balance - amount
