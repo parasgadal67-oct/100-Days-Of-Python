@@ -1,3 +1,4 @@
+import json
 import random
 from account import Account
 accounts = []
@@ -8,6 +9,10 @@ def find_account(number):
         if account.account_number == number:
             return account
     return None
+def save_accounts():
+    data = [account.to_dict() for account in accounts]
+    with open("accounts.json", "w") as f:
+        json.dump(data, f, indent=4)
 def get_number(prompt):
     while True:
         try:
@@ -29,6 +34,18 @@ def ask_for_account():
     if account is None:
         print("Account not found.")
     return account
+def load_accounts():
+    try:
+        with open("accounts.json", "r") as f:
+            data = json.load(f)
+    except FileNotFoundError:
+        return
+    for item in data:
+        account= Account(item["name"], item["account_number"])
+        account.balance = item["balance"]
+        account.transactions = item['transactions']
+        accounts.append(account)
+load_accounts()
 while True:
     print("1. Create Account.")
     print("2. Deposit.")
@@ -45,6 +62,7 @@ while True:
             continue
         account_number = generate_account_number()
         accounts.append(Account(name, account_number))
+        save_accounts()
         print(f"Account created successfully. Your account number is '{account_number}'.")
         print(f"Accounts so far :{len(accounts)}")
     elif choice == "2":
@@ -52,11 +70,13 @@ while True:
         if account is not None:
             amount = get_number("Enter the amount: ")
             account.deposit(amount)
+            save_accounts()
     elif choice == "3":
         account = ask_for_account()
         if account is not None:
             amount = get_number("Enter the amount: ")
             account.withdraw(amount)
+            save_accounts()
     elif choice == "4":
         account = ask_for_account()
         if account is not None:

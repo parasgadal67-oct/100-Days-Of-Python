@@ -36,4 +36,11 @@ class Account:
             return
         for record in self.transactions:
             print(f"{record['type']} : {record['amount']}")
-   
+    
+    def to_dict(self):
+        return{
+            "name": self.name,
+            "account_number": self.account_number,
+            "balance": self.balance,
+            "transactions": self.transactions
+        }
