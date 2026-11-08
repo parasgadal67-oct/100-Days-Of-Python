@@ -4,8 +4,6 @@ url = f"https://api.github.com/users/{username}"
 response = requests.get(url)
 if response.status_code == 200:
     data = response.json()
-    print("STATUS:",response.status_code)
-    print("DATA:", data)
     print("login:", data["login"])
     print("Public_repos:", data["public_repos"])
     print("Followers:",data["followers"])
