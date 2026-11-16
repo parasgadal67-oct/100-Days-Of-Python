@@ -6,9 +6,9 @@ average = marks.mean()
 highest = marks.max()
 lowest = marks.min()
 passed = (marks>=50).sum()
-#Bonus marks
+# Bonus marks
 bonus = np.minimum(marks +5, 100)
-# print th report
+# print the report
 print("==== Class Marks Report ====")
 print("Marks:", marks)
 print(f"Average: {average:.2f}")
